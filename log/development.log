@@ -148,3 +148,40 @@ Migrating to CreateStudents (1)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
   [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["first_name", "Morty"], ["last_name", "Smith"], ["created_at", "2017-11-28 15:01:02.845645"], ["updated_at", "2017-11-28 15:01:02.845645"]]
   [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "students" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Rick"], ["last_name", "Sanchez"], ["created_at", "2018-08-31 18:36:51.349319"], ["updated_at", "2018-08-31 18:36:51.349319"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "students" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["first_name", "Morty"], ["last_name", "Smith"], ["created_at", "2018-08-31 18:36:51.352776"], ["updated_at", "2018-08-31 18:36:51.352776"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/students" for ::1 at 2018-08-31 14:44:09 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StudentsController#index as HTML
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students"
+  Rendered students/index.html.erb within layouts/application (20.0ms)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 0.7ms)
+
+ActionView::Template::Error (undefined method `name' for #<Student:0x007f9affb97188>):
+    1: <% @students.each do |student| %>
+    2:   <%= student.name %>
+    3: <% end %>
+  app/views/students/index.html.erb:2:in `block in _app_views_students_index_html_erb___814541459728680882_70151846428540'
+  app/views/students/index.html.erb:1:in `_app_views_students_index_html_erb___814541459728680882_70151846428540'
+
+
+  Rendered /Users/vadim/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /Users/vadim/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/vadim/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/vadim/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (105.3ms)
+
+
+Started GET "/students" for ::1 at 2018-08-31 14:44:35 -0400
+Processing by StudentsController#index as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1mSELECT "students".* FROM "students"[0m
+  Rendered students/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 527ms (Views: 525.2ms | ActiveRecord: 0.3ms)
